@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веб-додаток на JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        .container {
+            text-align: center;
+        }
+    </style>
+    <script>
+        function determineAgeCategory() {
+            let age = prompt("Введіть ваш вік:");
+            if (age >= 0 && age <= 12) {
+                alert("Ви дитина.");
+            } else if (age >= 13 && age <= 18) {
+                alert("Ви підліток.");
+            } else if (age >= 19 && age <= 60) {
+                alert("Ви дорослий.");
+            } else if (age > 60) {
+                alert("Ви пенсіонер.");
+            } else {
+                alert("Некоректний вік.");
+            }
+        }
+
+        function getSpecialCharacter() {
+            let number = prompt("Введіть число від 0 до 9:");
+            let specialCharacter;
+            switch (number) {
+                case '0':
+                    specialCharacter = ')';
+                    break;
+                case '1':
+                    specialCharacter = '!';
+                    break;
+                case '2':
+                    specialCharacter = '@';
+                    break;
+                case '3':
+                    specialCharacter = '#';
+                    break;
+                case '4':
+                    specialCharacter = '$';
+                    break;
+                case '5':
+                    specialCharacter = '%';
+                    break;
+                case '6':
+                    specialCharacter = '^';
+                    break;
+                case '7':
+                    specialCharacter = '&';
+                    break;
+                case '8':
+                    specialCharacter = '*';
+                    break;
+                case '9':
+                    specialCharacter = '(';
+                    break;
+                default:
+                    specialCharacter = 'Некоректне число';
+            }
+            alert(`Спецсимвол: ${specialCharacter}`);
+        }
+
+        function checkIdenticalDigits() {
+            let number = prompt("Введіть тризначне число:");
+            if (number.length === 3) {
+                let digits = number.split('');
+                if (digits[0] === digits[1] || digits[0] === digits[2] || digits[1] === digits[2]) {
+                    alert("Число має однакові цифри.");
+                } else {
+                    alert("Число не має однакових цифр.");
+                }
+            } else {
+                alert("Некоректне число.");
+            }
+        }
+
+        function checkLeapYear() {
+            let year = prompt("Введіть рік:");
+            if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+                alert(`${year} рік є високосним.`);
+            } else {
+                alert(`${year} рік не є високосним.`);
+            }
+        }
+
+        function checkPalindrome() {
+            let number = prompt("Введіть п'ятизначне число:");
+            if (number.length === 5) {
+                let reversedNumber = number.split('').reverse().join('');
+                if (number === reversedNumber) {
+                    alert(`${number} є паліндромом.`);
+                } else {
+                    alert(`${number} не є паліндромом.`);
+                }
+            } else {
+                alert("Некоректне число.");
+            }
+        }
+
+        function convertCurrency() {
+            let amount = prompt("Введіть суму в USD:");
+            let currency = prompt("В яку валюту ви хочете перевести: EUR, UAN, AZN?");
+            const rates = { EUR: 0.85, UAN: 27.2, AZN: 1.7 };
+            let result;
+            switch (currency) {
+                case 'EUR':
+                    result = amount * rates.EUR;
+                    break;
+                case 'UAN':
+                    result = amount * rates.UAN;
+                    break;
+                case 'AZN':
+                    result = amount * rates.AZN;
+                    break;
+                default:
+                    result = "Некоректна валюта.";
+            }
+            alert(`Сума у вибраній валюті: ${result}`);
+        }
+
+        function calculateDiscount() {
+            let amount = prompt("Введіть суму покупки:");
+            let discount;
+            if (amount >= 200 && amount < 300) {
+                discount = amount * 0.03;
+            } else if (amount >= 300 && amount < 500) {
+                discount = amount * 0.05;
+            } else if (amount >= 500) {
+                discount = amount * 0.07;
+            } else {
+                discount = 0;
+            }
+            let total = amount - discount;
+            alert(`Сума до оплати зі знижкою: ${total}`);
+        }
+
+        function canCircleFitInSquare() {
+            let circleLength = prompt("Введіть довжину кола:");
+            let squarePerimeter = prompt("Введіть периметр квадрата:");
+            let diameter = circleLength / Math.PI;
+            let sideLength = squarePerimeter / 4;
+            alert(diameter <= sideLength ? "Коло може поміститися в квадрат." : "Коло не може поміститися в квадрат.");
+        }
+
+        function quiz() {
+            let score = 0;
+            let answer1 = prompt("Питання 1: Що є столицею України?\n1. Львів\n2. Київ\n3. Одеса");
+            if (answer1 === '2') score += 2;
+            let answer2 = prompt("Питання 2: Яка найбільша річка в Україні?\n1. Дніпро\n2. Дунай\n3. Дністер");
+            if (answer2 === '1') score += 2;
+            let answer3 = prompt("Питання 3: Який символ державності України?\n1. Герб\n2. Прапор\n3. Гімн");
+            if (answer3 === '1') score += 2;
+            alert(`Ви набрали ${score} балів.`);
+        }
+
+        function getNextDate() {
+            let day = parseInt(prompt("Введіть день:"));
+            let month = parseInt(prompt("Введіть місяць:"));
+            let year = parseInt(prompt("Введіть рік:"));
+
+            let isLeap = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+            let daysInMonth = [31, isLeap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+            day++;
+            if (day > daysInMonth[month - 1]) {
+                day = 1;
+                month++;
+                if (month > 12) {
+                    month = 1;
+                    year++;
+                }
+            }
+
+            alert(`Наступна дата: ${day}.${month}.${year}`);
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Веб-додаток на JavaScript</h1>
+    <button onclick="determineAgeCategory()">Визначити вікову категорію</button><br>
+    <button onclick="getSpecialCharacter()">Спецсимвол на клавіші</button><br>
+    <button onclick="checkIdenticalDigits()">Перевірити на однакові цифри</button><br>
+    <button onclick="checkLeapYear()">Перевірити на високосний рік</button><br>
+    <button onclick="checkPalindrome()">Перевірити на паліндром</button><br>
+    <button onclick="convertCurrency()">Конвертор валют</button><br>
+    <button onclick="calculateDiscount()">Розрахувати знижку</button><br>
+    <button onclick="canCircleFitInSquare()">Перевірка на можливість розміщення кола в квадраті</button><br>
+    <button onclick="quiz()">Тест з трьома питаннями</button><br>
+    <button onclick="getNextDate()">Вивести наступну дату</button>
+</div>
+</body>
+</html>
